@@ -1,0 +1,29 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>
+        Employee Details
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+      <form >
+          <mat-form-field class="example-full-width">
+              <input matInput name='lastname' [(ngModel)]="employee.lastName"   placeholder="Last Name" 
+              required='true'>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input matInput name='firstName' [(ngModel)]='employee.firstName' placeholder="First Name" 
+              required='true'>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input matInput name='ecompany'[(ngModel)]='employee.company' 
+              [value]='employee.company' placeholder='Company' ngDefaultControl>
+          </mat-form-field>
+          <mat-slide-toggle name ='active'  [(ngModel)]='employee.active' [(checked)]="employee.active" color="primary" ngDefaultControl> Active </mat-slide-toggle>
+      </form>
+  </mat-card-content>
+</mat-card> 
+ 
+ <p></p>
+  <app-address-edit [address]="employee.address" ></app-address-edit>
+  
+  

@@ -1,0 +1,44 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>
+      Customer Details
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+      <form #customerForm="ngForm">
+          <mat-form-field class="example-full-width">
+              <input matInput name='firstName' [(ngModel)]='customer.firstName' placeholder="First Name" 
+              required='true'>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input matInput name='lastname' [(ngModel)]="customer.lastName"   placeholder="Last Name" 
+              required='true'>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input matInput name='ecompany'[(ngModel)]='customer.company' 
+              [value]='customer.company' placeholder='Company' ngDefaultControl>
+          </mat-form-field>
+          <mat-slide-toggle name ='active'  [(ngModel)]='customer.active' [(checked)]="customer.active" color="primary" ngDefaultControl> Active </mat-slide-toggle>
+      </form>
+      <p></p>
+      <mat-tab-group class="demo-tab-group">
+        <mat-tab label="Address">
+          <app-address-edit [address]="customer.address"></app-address-edit>
+        </mat-tab>
+      </mat-tab-group>
+  </mat-card-content>
+  <mat-card-actions>
+    <table width="90%" align="center">
+      <tr>
+        <td width="90%" aligh="left">
+          <button mat-raised-button color="primary" (click)="save(customerForm)">Save</button>
+          <button mat-raised-button color="primary">Cancel</button>
+          <button mat-raised-button color="warn" (click)="deleteCustomer(customer)"><mat-icon>delete</mat-icon>Delete</button>
+       </td><td width="10%" align="right">
+          <button  mat-mini-fab color="primary" align="right" (click)="newCustomer(customerForm)"><mat-icon>add</mat-icon></button>
+       </td>
+      </tr>
+    </table>
+  </mat-card-actions>
+</mat-card>
+<p></p>

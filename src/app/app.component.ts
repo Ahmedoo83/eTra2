@@ -1,3 +1,7 @@
+import { GlobalLoadService } from './global-load.service';
+import { Product } from './models/product';
+import { OrderType } from './models/orderStatus';
+import { Customer } from './models/customer';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,6 +9,14 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  title = 'app';
+  title = 'eTra';
+  product: Product;
+  constructor(gls: GlobalLoadService ) {this.product = new Product('Dummy', 0, '', '', '', 0, 0, 0, '', false); 
+  gls.getProductCategories();
+
+}
+ // i: number;
+ // i = OrderType.CustomerOrder;
 }

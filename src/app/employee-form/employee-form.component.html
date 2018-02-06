@@ -1,0 +1,44 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>
+        Employee Details
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+      <form #employeeForm="ngForm">
+          <mat-form-field class="example-full-width">
+              <input matInput name='firstName' [(ngModel)]='employee.firstName' placeholder="First Name" 
+              required='true'>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input matInput name='lastname' [(ngModel)]="employee.lastName"   placeholder="Last Name" 
+              required='true'>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input matInput name='ecompany'[(ngModel)]='employee.company' 
+              [value]='employee.company' placeholder='Company' ngDefaultControl>
+          </mat-form-field>
+          <mat-slide-toggle name ='active'  [(ngModel)]='employee.active' [(checked)]="employee.active" color="primary" ngDefaultControl> Active </mat-slide-toggle>
+      </form>
+      <p></p>
+      <mat-tab-group class="demo-tab-group">
+        <mat-tab label="Address">
+          <app-address-edit [address]="employee.address"></app-address-edit>
+        </mat-tab>
+      </mat-tab-group>
+  </mat-card-content>
+  <mat-card-actions>
+    <table width="90%" align="center">
+      <tr>
+        <td width="90%" aligh="left">
+          <button mat-raised-button color="primary" (click)="save(employeeForm)">Save</button>
+          <button mat-raised-button color="primary">Cancel</button>
+          <button mat-raised-button color="warn" (click)="deleteEmployee(employee)"><mat-icon>delete</mat-icon>Delete</button>
+       </td><td width="10%" align="right">
+          <button  mat-mini-fab color="primary" align="right" (click)="newEmp(employeeForm)"><mat-icon>add</mat-icon></button>
+       </td>
+      </tr>
+    </table>
+  </mat-card-actions>
+</mat-card>
+<p></p>

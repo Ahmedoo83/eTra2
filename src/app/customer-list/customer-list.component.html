@@ -1,0 +1,17 @@
+<table width="100%">
+  <tbody>
+    <tr> 
+      <td width="30%" valign="top">
+        <mat-nav-list>
+          <a mat-list-item *ngFor="let customer of customers" (click)="selectCustomer(customer)"> {{ customer.lastName }}, {{customer.firstName}} </a>
+        </mat-nav-list>
+
+      </td>
+      <td width="70%">
+        <app-customer-edit [customer]="selectedCustomer"></app-customer-edit>
+        <!-- <app-employee-edit *ngIf="selectedEmployee" [employee]="selectedEmployee"></app-employee-edit> -->
+        <!-- <app-customer-form *ngIf="selectedCustomer" [customer]="selectedCustomer"></app-customer-form> -->
+      </td>
+    </tr>
+  </tbody>
+</table>

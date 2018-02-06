@@ -1,0 +1,19 @@
+
+<table width="100%">
+    <tbody>
+      <tr> 
+        <td width="30%" valign="top">
+          <mat-nav-list>
+            <a mat-list-item *ngFor="let product of products" (click)="selectProduct(product)"> 
+              {{ product.productName }} - {{product.productCode}} </a>
+          </mat-nav-list>
+  
+        </td>
+        <td width="70%">
+          <app-product-form *ngIf="selectedProduct" [product]="selectedProduct"></app-product-form>
+          <!-- <app-employee-edit *ngIf="selectedEmployee" [employee]="selectedEmployee"></app-employee-edit> -->
+          <!-- <app-customer-form *ngIf="selectedCustomer" [customer]="selectedCustomer"></app-customer-form> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
