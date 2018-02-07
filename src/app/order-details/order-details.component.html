@@ -1,0 +1,83 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>
+        Order Details
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-tab-group class="demo-tab-group">
+        <mat-tab label="Order">
+          <form #orderForm="ngForm">
+            <mat-form-field class="example-full-width">
+
+                <!-- public id: string,
+                public employee: Employee,
+                public orderDate: Date,
+                public shipping: Item,
+                public shipDate: Date,
+                public paymentType: Item,
+                public paidDate: Date,
+                public status: Item,
+                public taxStatus: Item,
+                public orderType: number,
+                public customer?: Customer,
+                public supplaier?: Supplaier,
+                public taxRate?: number,
+                public taxes?: number,
+                public shippingFee?: number,
+                public note?: string,
+                public lineItems?: OrderLineItem[]
+               -->
+              <input matInput name='orderName' [(ngModel)]='order.orderDate' placeholder="Order Date" required='true' type="date">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput name='OrderShippingDate' [(ngModel)]="order.shipDate" placeholder="Delivary Date" required='true' type="date">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput name='PaymentDate' [(ngModel)]="order.paidDate" placeholder="Payment Date" required='true' type="date">
+            </mat-form-field>
+            <!-- <mat-form-field>
+              <input matInput name='standardCost' [(ngModel)]='order.standardCost' placeholder='Standard Cost' ngDefaultControl>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name='listPrice' [(ngModel)]='order.listPrice' placeholder='List Price' ngDefaultControl>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name='reorderLevel' [(ngModel)]='order.reorderLevel' placeholder='Reorder Level' ngDefaultControl>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name='quantityPerUnit' [(ngModel)]='order.quantityPerUnit' placeholder='Quantity Per Unit' ngDefaultControl>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select placeholder='Product Category' [(ngModel)]='order.productCategory' name='productCategory'>
+                <mat-option *ngFor='let cat of productCat' [value]='cat.itemID'>
+                  {{ cat.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> -->
+            <!-- <select name="CAT" [(ngModel)]='product.productCategory'> <option *ngFor='let item of productCat' [value]='item.id'>{{item.name}}</option></select> -->
+            <!-- <mat-slide-toggle name='active' [(ngModel)]='product.active' [(checked)]="product.active" color="primary" ngDefaultControl>
+            Active </mat-slide-toggle> -->
+          </form>
+          <p></p>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+    <mat-card-actions>
+      <table width="90%" align="center">
+        <tr>
+          <td width="90%" aligh="left">
+            <button mat-raised-button color="primary" (click)="save(orderForm)">Save</button>
+            <button mat-raised-button color="primary">Cancel</button>
+            <button mat-raised-button color="warn" (click)="deleteOrder(order)">
+              <mat-icon>delete</mat-icon>Delete</button>
+          </td>
+          <td width="10%" align="right">
+            <button mat-mini-fab color="primary" align="right" (click)="newOrder(orderForm)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </table>
+    </mat-card-actions>
+  </mat-card>

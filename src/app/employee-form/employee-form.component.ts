@@ -33,9 +33,9 @@ export class EmployeeFormComponent implements OnInit {
     this.fd.addEmployee(this.employee);
     form.reset();
     }else if ( this.employee.id.length !== 0 && form.valid && form.dirty) {
-      if ( this.employee.address.id.length === 0 ) {
-        this.employee.address = null;
-      }
+ //     if ( this.employee.address.id.length === 0 ) {
+       // this.employee.address = null;
+ //     }
       this.fd.updateEmployee(this.employee);
     }
 

@@ -1,3 +1,5 @@
+import { Item } from './../models/item';
+import { GlobalLoadService } from './../global-load.service';
 import { FireDateService } from './../fire-date.service';
 import { NgForm } from '@angular/forms';
 import { Product } from './../models/product';
@@ -11,28 +13,23 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 export class ProductFormComponent implements OnInit, OnChanges {
   private _product: Product; // = new Product('', 0, '', '', '', 0, 0, 0, '', false);
   private newPreductIndicator = false;
+  productCat: Item[];
   @Input() product: Product;
-  constructor(private fd: FireDateService) { }
+  constructor(private fd: FireDateService, private gs: GlobalLoadService) { }
   productForm: NgForm;
   ngOnChanges() {
- //   this.product = new Product('', 0, '', '', '', 0, 0, 0, '', false);
   }
   ngOnInit() {
-   // if (!this.product) {
-  //  }
+  this.productCat = this.gs.getProductCategories();
   }
   save(form: NgForm) {
     if (form.valid && form.dirty ) {
-      console.log('AA');
       if ( this.product.id.length <= 0 && this.newPreductIndicator) {
-        console.log('Agmedoo');
-        // add
         this.fd.addProduct(this.product);
         form.reset();
         this.newPreductIndicator = false;
       } else {
-// update
-
+        this.fd.updateProduct(this.product);
       }
      }
   }
@@ -42,4 +39,5 @@ export class ProductFormComponent implements OnInit, OnChanges {
     form.reset();
     this.newPreductIndicator = true;
   }
+
 }

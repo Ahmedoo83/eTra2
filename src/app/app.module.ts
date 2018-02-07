@@ -9,7 +9,7 @@ import { NgModule } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule, MatCheckboxModule, MatCardModule,
-  MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule} from '@angular/material';
+  MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule, MatSelectModule} from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -24,6 +24,7 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerEditComponent } from './customer-edit/customer-edit.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ProductListComponent } from './product-list/product-list.component';
     CustomerListComponent,
     CustomerEditComponent,
     ProductFormComponent,
-    ProductListComponent
+    ProductListComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { ProductListComponent } from './product-list/product-list.component';
     MatToolbarModule,
     MatIconModule, MatTabsModule,
     MatListModule, MatButtonModule, MatCheckboxModule, MatCardModule,
-    MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule
+    MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule,
+    MatSelectModule
   ],
   providers: [FireDateService, GlobalLoadService],
   bootstrap: [AppComponent]

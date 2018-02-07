@@ -1,46 +1,48 @@
 <mat-card class="example-card">
   <mat-card-header>
     <mat-card-title>
-        Product Details
+      Product Details
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-      <mat-tab-group class="demo-tab-group">
-          <mat-tab label="Product">
-      <form #productForm="ngForm">
+    <mat-tab-group class="demo-tab-group">
+      <mat-tab label="Product">
+        <form #productForm="ngForm">
           <mat-form-field class="example-full-width">
-              <input  matInput name='productName' [(ngModel)]='product.productName' placeholder="Product Name" 
-              required='true'>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-              <input matInput name='productCode' [(ngModel)]="product.productCode"   placeholder="Product Code" 
-              required='true'>
+            <input matInput name='productName' [(ngModel)]='product.productName' placeholder="Product Name" required='true'>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-              <input matInput name='description' [(ngModel)]="product.description"   placeholder="Product Description" 
-              required='true'>
+            <input matInput name='productCode' [(ngModel)]="product.productCode" placeholder="Product Code" required='true'>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput name='description' [(ngModel)]="product.description" placeholder="Product Description" required='true'>
           </mat-form-field>
           <mat-form-field>
-              <input matInput name='standardCost'[(ngModel)]='product.standardCost' 
-              placeholder='Standard Cost' ngDefaultControl>
+            <input matInput name='standardCost' [(ngModel)]='product.standardCost' placeholder='Standard Cost' ngDefaultControl>
           </mat-form-field>
           <mat-form-field>
-              <input matInput name='listPrice'[(ngModel)]='product.listPrice' 
-              placeholder='List Price' ngDefaultControl>
+            <input matInput name='listPrice' [(ngModel)]='product.listPrice' placeholder='List Price' ngDefaultControl>
           </mat-form-field>
           <mat-form-field>
-              <input matInput name='reorderLevel'[(ngModel)]='product.reorderLevel' 
-              placeholder='Reorder Level' ngDefaultControl>
+            <input matInput name='reorderLevel' [(ngModel)]='product.reorderLevel' placeholder='Reorder Level' ngDefaultControl>
           </mat-form-field>
           <mat-form-field>
-              <input matInput name='quantityPerUnit'[(ngModel)]='product.quantityPerUnit' 
-              placeholder='Quantity Per Unit' ngDefaultControl>
+            <input matInput name='quantityPerUnit' [(ngModel)]='product.quantityPerUnit' placeholder='Quantity Per Unit' ngDefaultControl>
           </mat-form-field>
-          <mat-slide-toggle name ='active'  [(ngModel)]='product.active' [(checked)]="product.active" color="primary" ngDefaultControl> Active </mat-slide-toggle>
-      </form>
-      <p></p>
-        </mat-tab>
-      </mat-tab-group>
+          <mat-form-field>
+            <mat-select placeholder='Product Category' [(ngModel)]='product.productCategory' name='productCategory'>
+              <mat-option *ngFor='let cat of productCat' [value]='cat.itemID'>
+                {{ cat.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <select name="CAT" [(ngModel)]='product.productCategory'> <option *ngFor='let item of productCat' [value]='item.id'>{{item.name}}</option></select> -->
+          <mat-slide-toggle name='active' [(ngModel)]='product.active' [(checked)]="product.active" color="primary" ngDefaultControl>
+          Active </mat-slide-toggle>
+        </form>
+        <p></p>
+      </mat-tab>
+    </mat-tab-group>
   </mat-card-content>
   <mat-card-actions>
     <table width="90%" align="center">
@@ -48,10 +50,14 @@
         <td width="90%" aligh="left">
           <button mat-raised-button color="primary" (click)="save(productForm)">Save</button>
           <button mat-raised-button color="primary">Cancel</button>
-          <button mat-raised-button color="warn" (click)="deleteProduct(product)"><mat-icon>delete</mat-icon>Delete</button>
-       </td><td width="10%" align="right">
-          <button  mat-mini-fab color="primary" align="right" (click)="newProduct(productForm)"><mat-icon>add</mat-icon></button>
-       </td>
+          <button mat-raised-button color="warn" (click)="deleteProduct(product)">
+            <mat-icon>delete</mat-icon>Delete</button>
+        </td>
+        <td width="10%" align="right">
+          <button mat-mini-fab color="primary" align="right" (click)="newProduct(productForm)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </td>
       </tr>
     </table>
   </mat-card-actions>

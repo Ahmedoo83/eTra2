@@ -1,3 +1,4 @@
+import { EmployeeEntity } from './models/employeeEntity';
 import { Product } from './models/product';
 import { CustomerEntity } from './models/customerEntity';
 import { CustomerInt } from './models/customerInt';
@@ -13,20 +14,25 @@ export class FireDateService {
   employees: Observable<Employee[]>;
   employee: Observable<Employee>;
   employeeDoc: AngularFirestoreDocument<Employee>;
+  employeeEnt: EmployeeEntity;
   private employeeCollection: AngularFirestoreCollection<Employee>;
   customers: Observable<Customer[]>;
   customer: Observable<CustomerEntity>;
   customerDoc: AngularFirestoreDocument<CustomerEntity>;
   customerCollection: AngularFirestoreCollection<CustomerEntity>;
   productCollection: AngularFirestoreCollection<Product>;
+  productDoc: AngularFirestoreDocument<Product>;
   product: Observable<Product>;
   products: Observable<Product[]>;
   address: Observable<Address>;
   selectedEmployee: Employee;
+  currentEmployee: Employee;
   constructor(public db: AngularFirestore) {
     this.employeeCollection = db.collection<Employee>('employee');
     this.productCollection = db.collection<Product>('product');
     this.customerCollection = db.collection<CustomerEntity>('customer');
+    // TODO: set Current Employee
+     this.getEmployees().subscribe(employees => { this.currentEmployee = employees[0]; });
 
    }
    getEmployees() {
@@ -74,15 +80,28 @@ export class FireDateService {
     this.customerDoc = this.db.doc(`customer/${customer.id}`);
     this.customerDoc.delete();
  }
-   updateEmployee(employee: Employee) {
+   updateEmployee(employee: EmployeeEntity) {
     this.employeeDoc = this.db.doc(`employee/${employee.id}`);
-   // console.log('e up' + employee.addressID + employee.address);
-    this.employeeDoc.update(employee);
+   this.employeeEnt =  new EmployeeEntity(
+     employee.id,
+     employee.employeeNo,
+     employee.firstName,
+     employee.lastName,
+     employee.active,
+     employee.picURL,
+     employee.company,
+     employee.addressID);
+    this.employeeDoc.update( JSON.parse(JSON.stringify(this.employeeEnt)) );
  }
+ updateProduct(product: Product) {
+  this.productDoc = this.db.doc(`product/${product.id}`);
+ // console.log('e up' + employee.addressID + employee.address);
+  this.productDoc.update(JSON.parse(JSON.stringify(product)));
+}
  updateCustomer(customer: CustomerEntity) {
   this.customerDoc = this.db.doc(`customer/${customer.id}`);
  // console.log('e up' + customer.addressID + customer.address);
-  this.customerDoc.update(customer);
+  this.customerDoc.update(JSON.parse(JSON.stringify(customer)));
 }
   addAddress(address: Address) {
     const id = this.db.createId();
@@ -127,7 +146,8 @@ export class FireDateService {
       listPrice: product.listPrice,
       reorderLevel: product.reorderLevel,
       quantityPerUnit: product.quantityPerUnit,
-      active: product.active
+      active: product.active,
+      productCategory: product.productCategory
     };
     this.productCollection.add(prd);
     console.log('Add');
